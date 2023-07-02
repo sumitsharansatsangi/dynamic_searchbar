@@ -1,7 +1,7 @@
 name: dynamic_searchbar
-description: Define your fields and filter the list.
-version: 0.0.1
-homepage: https://snowyday.site/
+description: Define your fields and filter the list by keyword, date range, and number range. And sort it.
+version: 1.0.0
+homepage: https://github.com/bataa07/dynamic_searchbar
 
 environment:
   sdk: '>=3.0.3 <4.0.0'

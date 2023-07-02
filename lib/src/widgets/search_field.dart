@@ -79,6 +79,13 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
   }
 
   @override
+  void dispose() {
+    streamController.close();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final themeData = GlobalSearchbar.of(context)?.themeData;
 
