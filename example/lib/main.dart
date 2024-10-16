@@ -1,5 +1,5 @@
 import 'package:dynamic_searchbar/dynamic_searchbar.dart';
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' hide Color;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -74,21 +74,21 @@ class TestingApp extends StatelessWidget {
           title: 'Apply',
           style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(const Color(0xFF348FFF)),
+                WidgetStateProperty.all<Color>(const Color(0xFF348FFF)),
           ),
         ),
         clearFilterButton: ActionButtonTheme(
           title: 'Clear filter',
           style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(const Color(0xFF3DD89B)),
+                WidgetStateProperty.all<Color>(const Color(0xFF3DD89B)),
           ),
         ),
         cancelButton: ActionButtonTheme(
           title: 'Cancel',
           style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all<Color>(const Color(0xFFE8E7E4)),
+                WidgetStateProperty.all<Color>(const Color(0xFFE8E7E4)),
           ),
         ),
       ),
