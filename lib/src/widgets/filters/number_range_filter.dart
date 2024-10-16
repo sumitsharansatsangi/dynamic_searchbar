@@ -4,12 +4,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class NumberRangeFilter extends HookWidget {
   const NumberRangeFilter({
-    Key? key,
+    super.key,
     required this.values,
     required this.onChanged,
     required this.min,
     required this.max,
-  }) : super(key: key);
+  });
 
   final RangeValues values;
   final Function(RangeValues) onChanged;

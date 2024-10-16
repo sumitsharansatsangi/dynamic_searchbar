@@ -13,13 +13,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class SearchFiltersContent extends StatefulWidget {
   const SearchFiltersContent({
-    Key? key,
+    super.key,
     required this.searchState,
     required this.filters,
     required this.sorts,
     required this.searchSink,
     required this.onClose,
-  }) : super(key: key);
+  });
 
   final SearchState searchState;
   final List<FilterAction> filters;

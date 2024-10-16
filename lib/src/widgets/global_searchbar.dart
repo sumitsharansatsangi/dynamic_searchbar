@@ -7,10 +7,10 @@ import 'package:flutter/cupertino.dart';
 /// Set the settings you want to customize in [searchThemeData].
 class GlobalSearchbar extends StatefulWidget {
   const GlobalSearchbar({
-    Key? key,
+    super.key,
     required this.child,
     required this.searchThemeData,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final SearchThemeData searchThemeData;

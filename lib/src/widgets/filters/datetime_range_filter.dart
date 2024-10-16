@@ -8,11 +8,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class DateTimeRangeFilter extends HookWidget {
   const DateTimeRangeFilter({
-    Key? key,
+    super.key,
     required this.dateRange,
     required this.onChanged,
     required this.field,
-  }) : super(key: key);
+  });
 
   final DateTimeRange dateRange;
   final Function(DateTimeRange) onChanged;

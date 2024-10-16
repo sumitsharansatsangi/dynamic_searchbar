@@ -37,14 +37,14 @@ class SearchField<T> extends StatefulHookWidget {
   /// ),
   /// ```
   const SearchField({
-    Key? key,
+    super.key,
     required this.filters,
     required this.sorts,
     required this.initialData,
     required this.onChanged,
     this.onFilter,
     this.disableFilter = false,
-  }) : super(key: key);
+  });
 
   final List<FilterAction> filters;
   final List<SortAction> sorts;

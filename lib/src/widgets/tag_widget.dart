@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 class TagWidget<T> extends StatelessWidget {
   const TagWidget({
-    Key? key,
+    super.key,
     required this.entry,
     this.onTap,
     this.onRemove,
     this.isSelected,
     this.isSort,
     this.dismissible,
-  }) : super(key: key);
+  });
 
   final dynamic entry;
   final Function()? onTap;

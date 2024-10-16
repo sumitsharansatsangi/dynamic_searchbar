@@ -5,11 +5,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class StringFilter extends HookWidget {
   const StringFilter({
-    Key? key,
+    super.key,
     required this.searchKey,
     required this.hintText,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final String searchKey;
   final String hintText;

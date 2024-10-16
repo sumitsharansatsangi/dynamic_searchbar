@@ -1,4 +1,4 @@
-library dynamic_searchbar;
+library;
 
 export 'src/constants/enums.dart';
 export 'src/models/search_action.dart';
