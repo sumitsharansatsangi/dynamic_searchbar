@@ -17,8 +17,10 @@ class StringFilter extends HookWidget {
 
   List<DropdownMenuItem<StringOperator>> get dropdownItems {
     List<DropdownMenuItem<StringOperator>> menuItems = StringOperator.values
-        .map((operator) =>
-            DropdownMenuItem(value: operator, child: Text(operator.name)))
+        .map(
+          (operator) =>
+              DropdownMenuItem(value: operator, child: Text(operator.name)),
+        )
         .toList();
 
     return menuItems;
@@ -30,7 +32,8 @@ class StringFilter extends HookWidget {
     final selectedOperator = useState(StringOperator.values.first);
 
     final themeData = GlobalSearchbar.of(context)?.themeData;
-    var decoration = themeData?.stringFilterTheme.decoration ??
+    var decoration =
+        themeData?.stringFilterTheme.decoration ??
         InputDecoration(
           prefixIcon: Icon(
             Icons.search,
@@ -64,9 +67,7 @@ class StringFilter extends HookWidget {
           Container(
             height: 48.0,
             padding: const EdgeInsets.only(left: 8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
             child: Center(
               child: DropdownButtonHideUnderline(
                 child: Theme(
@@ -88,7 +89,7 @@ class StringFilter extends HookWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

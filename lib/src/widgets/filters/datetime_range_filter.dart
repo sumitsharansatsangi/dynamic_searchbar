@@ -22,10 +22,12 @@ class DateTimeRangeFilter extends HookWidget {
   Widget build(BuildContext context) {
     final themeData = GlobalSearchbar.of(context)?.themeData;
 
-    final startDate =
-        useTextEditingController(text: dateTimeToString(dateRange.start));
-    final endDate =
-        useTextEditingController(text: dateTimeToString(dateRange.end));
+    final startDate = useTextEditingController(
+      text: dateTimeToString(dateRange.start),
+    );
+    final endDate = useTextEditingController(
+      text: dateTimeToString(dateRange.end),
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -49,14 +51,16 @@ class DateTimeRangeFilter extends HookWidget {
                 }
               },
               style: themeData?.dateRangeTheme.style,
-              decoration: themeData?.dateRangeTheme.decoration ??
+              decoration:
+                  themeData?.dateRangeTheme.decoration ??
                   InputDecoration(
                     hintText: 'Start date',
                     isDense: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4.0),
                       borderSide: BorderSide(
-                        color: themeData?.primaryColor ??
+                        color:
+                            themeData?.primaryColor ??
                             Theme.of(context).primaryColor,
                         width: 1.0,
                       ),
@@ -82,14 +86,16 @@ class DateTimeRangeFilter extends HookWidget {
                 }
               },
               style: themeData?.dateRangeTheme.style,
-              decoration: themeData?.dateRangeTheme.decoration ??
+              decoration:
+                  themeData?.dateRangeTheme.decoration ??
                   InputDecoration(
                     hintText: 'End date',
                     isDense: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4.0),
                       borderSide: BorderSide(
-                        color: themeData?.primaryColor ??
+                        color:
+                            themeData?.primaryColor ??
                             Theme.of(context).primaryColor,
                         width: 1.0,
                       ),
@@ -112,26 +118,15 @@ class DateTextFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     String separator = '-';
-    var text = _format(
-      newValue.text,
-      oldValue.text,
-      separator,
-    );
+    var text = _format(newValue.text, oldValue.text, separator);
 
     return newValue.copyWith(
       text: text,
-      selection: updateCursorPosition(
-        oldValue,
-        text,
-      ),
+      selection: updateCursorPosition(oldValue, text),
     );
   }
 
-  String _format(
-    String value,
-    String oldValue,
-    String separator,
-  ) {
+  String _format(String value, String oldValue, String separator) {
     var isErasing = value.length < oldValue.length;
     var isComplete = value.length > _maxChars + 2;
 
@@ -153,14 +148,8 @@ class DateTextFormatter extends TextInputFormatter {
     return result.join();
   }
 
-  TextSelection updateCursorPosition(
-    TextEditingValue oldValue,
-    String text,
-  ) {
-    var endOffset = max(
-      oldValue.text.length - oldValue.selection.end,
-      0,
-    );
+  TextSelection updateCursorPosition(TextEditingValue oldValue, String text) {
+    var endOffset = max(oldValue.text.length - oldValue.selection.end, 0);
 
     var selectionEnd = text.length - endOffset;
 

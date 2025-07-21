@@ -1,14 +1,6 @@
-enum OrderType {
-  asc,
-  desc,
-}
+enum OrderType { asc, desc }
 
-enum StringOperator {
-  contains,
-  equals,
-  startsWith,
-  endsWith,
-}
+enum StringOperator { contains, equals, startsWith, endsWith }
 
 enum FilterType {
   stringFilter,

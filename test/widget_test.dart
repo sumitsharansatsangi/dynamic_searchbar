@@ -13,8 +13,9 @@ import 'mock/filters.dart';
 import 'mock/sorts.dart';
 
 void main() {
-  testWidgets('filter and sort widgets build test',
-      (WidgetTester tester) async {
+  testWidgets('filter and sort widgets build test', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
@@ -40,8 +41,9 @@ void main() {
     }
   });
 
-  testWidgets('Check if stringFilter is working correctly',
-      (WidgetTester tester) async {
+  testWidgets('Check if stringFilter is working correctly', (
+    WidgetTester tester,
+  ) async {
     List filteredData = [];
 
     await tester.pumpWidget(
@@ -137,8 +139,9 @@ void main() {
     expect(filteredData.length == 2, true);
   });
 
-  testWidgets('Check if dateRangeFilter is working correctly',
-      (WidgetTester tester) async {
+  testWidgets('Check if dateRangeFilter is working correctly', (
+    WidgetTester tester,
+  ) async {
     List filteredData = [];
 
     await tester.pumpWidget(
@@ -174,8 +177,9 @@ void main() {
     expect(_checkIsAfter(filteredData), false);
   });
 
-  testWidgets('Check if numberRangeFilter is working correctly',
-      (WidgetTester tester) async {
+  testWidgets('Check if numberRangeFilter is working correctly', (
+    WidgetTester tester,
+  ) async {
     List filteredData = [];
 
     await tester.pumpWidget(
@@ -199,10 +203,12 @@ void main() {
     await tester.pump();
 
     final Offset topLeft = tester.getTopLeft(rangeSlider).translate(24, 0);
-    final Offset bottomLeft =
-        tester.getBottomLeft(rangeSlider).translate(24, 0);
-    final Offset bottomRight =
-        tester.getBottomRight(rangeSlider).translate(-24, 0);
+    final Offset bottomLeft = tester
+        .getBottomLeft(rangeSlider)
+        .translate(24, 0);
+    final Offset bottomRight = tester
+        .getBottomRight(rangeSlider)
+        .translate(-24, 0);
 
     final sliderWidth = tester.getSize(rangeSlider).width - 48;
     final dy = topLeft.dy + (bottomLeft.dy - topLeft.dy) / 2;
@@ -212,11 +218,15 @@ void main() {
     final Offset rightTarget = Offset(bottomRight.dx - 35 * unit, dy);
 
     await tester.dragFrom(
-        leftTarget, leftTarget + Offset(unit * 7 - leftTarget.dx, dy));
+      leftTarget,
+      leftTarget + Offset(unit * 7 - leftTarget.dx, dy),
+    );
     await tester.pumpAndSettle();
 
     await tester.dragFrom(
-        rightTarget, rightTarget - Offset(rightTarget.dx + 25 * unit, dy));
+      rightTarget,
+      rightTarget - Offset(rightTarget.dx + 25 * unit, dy),
+    );
     await tester.pumpAndSettle();
 
     await tester.tap(applyButton);
@@ -304,7 +314,8 @@ bool _checkIsAfter(List<dynamic> filteredData) {
 void _showResult(List<dynamic> filteredData) {
   for (var employee in filteredData) {
     print(
-        'firstname: ${employee.firstname}, hiredDate: ${employee.hiredDate}, age: ${employee.age}');
+      'firstname: ${employee.firstname}, hiredDate: ${employee.hiredDate}, age: ${employee.age}',
+    );
   }
   print('------------------------------------');
 }

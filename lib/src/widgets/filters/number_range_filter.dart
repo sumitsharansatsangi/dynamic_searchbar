@@ -27,10 +27,11 @@ class NumberRangeFilter extends HookWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: SliderTheme(
-        data: themeData?.numberRangeTheme ??
-            SliderTheme.of(context).copyWith(
-              showValueIndicator: ShowValueIndicator.always,
-            ),
+        data:
+            themeData?.numberRangeTheme ??
+            SliderTheme.of(
+              context,
+            ).copyWith(showValueIndicator: ShowValueIndicator.always),
         child: RangeSlider(
           values: rangeValues.value,
           min: minValue.value,

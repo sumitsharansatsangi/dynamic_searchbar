@@ -6,8 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'mock/employees.dart';
 
 void main() {
-  testWidgets('filter and sort widgets should be built',
-      (WidgetTester tester) async {
+  testWidgets('filter and sort widgets should be built', (
+    WidgetTester tester,
+  ) async {
     final searchState = SearchState(
       [
         FilterAction(
@@ -16,40 +17,20 @@ void main() {
           searchKey: 'Royce',
         ),
       ],
-      [
-        SortAction(
-          title: 'Age',
-          field: 'age',
-          order: OrderType.desc,
-        ),
-      ],
+      [SortAction(title: 'Age', field: 'age', order: OrderType.desc)],
     );
 
-    final data = filterList(
-      searchKey: searchState,
-      data: employees,
-    );
+    final data = filterList(searchKey: searchState, data: employees);
 
     expect(data.length == 2, true);
     expect(_checkSort(data), true);
   });
 
   testWidgets('sort should be duplicated', (WidgetTester tester) async {
-    final searchState = SearchState(
-      [],
-      [
-        SortAction(
-          title: 'Age 1',
-          field: 'age',
-          order: OrderType.desc,
-        ),
-        SortAction(
-          title: 'Age 2',
-          field: 'age',
-          order: OrderType.desc,
-        ),
-      ],
-    );
+    final searchState = SearchState([], [
+      SortAction(title: 'Age 1', field: 'age', order: OrderType.desc),
+      SortAction(title: 'Age 2', field: 'age', order: OrderType.desc),
+    ]);
 
     final isDuplicated = isDuplicatedSorts(searchState.sorts);
 
@@ -57,21 +38,14 @@ void main() {
   });
 
   testWidgets('filter should be duplicated', (WidgetTester tester) async {
-    final searchState = SearchState(
-      [
-        FilterAction(
-          title: 'Firstname',
-          field: 'firstname',
-          searchKey: 'Royce',
-        ),
-        FilterAction(
-          title: 'Firstname',
-          field: 'firstname',
-          searchKey: 'Royceann',
-        ),
-      ],
-      [],
-    );
+    final searchState = SearchState([
+      FilterAction(title: 'Firstname', field: 'firstname', searchKey: 'Royce'),
+      FilterAction(
+        title: 'Firstname',
+        field: 'firstname',
+        searchKey: 'Royceann',
+      ),
+    ], []);
 
     final isDuplicated = isDuplicatedFilters(searchState.filters);
 
@@ -87,13 +61,7 @@ void main() {
           searchKey: 'Royce',
         ),
       ],
-      [
-        SortAction(
-          title: 'Age',
-          field: 'age',
-          order: OrderType.desc,
-        ),
-      ],
+      [SortAction(title: 'Age', field: 'age', order: OrderType.desc)],
     );
 
     searchState = removeFilter(

@@ -54,9 +54,7 @@ class SearchThemeData {
       title: 'Apply',
       style: ButtonStyle(),
     ),
-    this.stringFilterTheme = const StringFilterTheme(
-      prefixIcon: Icons.search,
-    ),
+    this.stringFilterTheme = const StringFilterTheme(prefixIcon: Icons.search),
     this.numberRangeTheme = const SliderThemeData(),
     this.dateRangeTheme = const DateRangeTheme(),
     this.tagTheme = const TagTheme(),
@@ -108,20 +106,14 @@ class TagTheme {
   final BoxDecoration? decoration;
   final BoxDecoration? selectedDecoration;
 
-  const TagTheme({
-    this.decoration,
-    this.selectedDecoration,
-  });
+  const TagTheme({this.decoration, this.selectedDecoration});
 }
 
 class DateRangeTheme {
   final TextStyle? style;
   final InputDecoration? decoration;
 
-  const DateRangeTheme({
-    this.style,
-    this.decoration,
-  });
+  const DateRangeTheme({this.style, this.decoration});
 }
 
 class StringFilterTheme {
@@ -140,8 +132,5 @@ class ActionButtonTheme {
   final String title;
   final ButtonStyle style;
 
-  const ActionButtonTheme({
-    required this.title,
-    required this.style,
-  });
+  const ActionButtonTheme({required this.title, required this.style});
 }

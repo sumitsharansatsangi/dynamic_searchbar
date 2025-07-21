@@ -66,16 +66,14 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
   @override
   void initState() {
     assert(
-        !isDuplicatedFilters(widget.filters), 'Cannot have the same filters');
+      !isDuplicatedFilters(widget.filters),
+      'Cannot have the same filters',
+    );
     assert(!isDuplicatedSorts(widget.sorts), 'Cannot have the same sorts');
 
     super.initState();
 
-    streamController.stream.listen(
-      (event) => setState(
-        () => state = event,
-      ),
-    );
+    streamController.stream.listen((event) => setState(() => state = event));
   }
 
   @override
@@ -154,7 +152,9 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
                               dismissible: true,
                               onRemove: () => setState(
                                 () => state = removeFilter(
-                                    searchAction: state, filter: filter),
+                                  searchAction: state,
+                                  filter: filter,
+                                ),
                               ),
                             ),
                           ),
@@ -199,7 +199,9 @@ class _SearchFieldState<T> extends State<SearchField<T>> {
                                 isSort: true,
                                 onRemove: () => setState(
                                   () => state = removeFilter(
-                                      searchAction: state, sort: sort),
+                                    searchAction: state,
+                                    sort: sort,
+                                  ),
                                 ),
                               ),
                             ),

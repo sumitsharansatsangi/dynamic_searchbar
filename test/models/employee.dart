@@ -18,13 +18,13 @@ class Employee {
   });
 
   Employee.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        lastname = json['lastname'],
-        firstname = json['firstname'],
-        email = json['email'],
-        position = json['position'],
-        age = json['age'],
-        hiredDate = json['hiredDate'];
+    : id = json['id'],
+      lastname = json['lastname'],
+      firstname = json['firstname'],
+      email = json['email'],
+      position = json['position'],
+      age = json['age'],
+      hiredDate = json['hiredDate'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -34,7 +34,7 @@ class Employee {
       'email': email,
       'position': position,
       'age': age,
-      'hiredDate': hiredDate
+      'hiredDate': hiredDate,
     };
   }
 }

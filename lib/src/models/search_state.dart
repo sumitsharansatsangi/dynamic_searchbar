@@ -4,23 +4,12 @@ class SearchState {
   List<FilterAction> filters;
   List<SortAction> sorts;
 
-  SearchState(
-    this.filters,
-    this.sorts,
-  );
+  SearchState(this.filters, this.sorts);
 
-  SearchState.init()
-      : filters = [],
-        sorts = [];
+  SearchState.init() : filters = [], sorts = [];
 
-  SearchState copyWith({
-    List<FilterAction>? filters,
-    List<SortAction>? sorts,
-  }) {
-    return SearchState(
-      filters ?? this.filters,
-      sorts ?? this.sorts,
-    );
+  SearchState copyWith({List<FilterAction>? filters, List<SortAction>? sorts}) {
+    return SearchState(filters ?? this.filters, sorts ?? this.sorts);
   }
 
   SearchState clone() {

@@ -25,18 +25,12 @@ class GlobalSearchbar extends StatefulWidget {
 class _GlobalSearchbarState extends State<GlobalSearchbar> {
   @override
   Widget build(BuildContext context) {
-    return _SearchBar(
-      themeData: widget.searchThemeData,
-      child: widget.child,
-    );
+    return _SearchBar(themeData: widget.searchThemeData, child: widget.child);
   }
 }
 
 class _SearchBar extends InheritedWidget {
-  const _SearchBar({
-    required this.themeData,
-    required super.child,
-  });
+  const _SearchBar({required this.themeData, required super.child});
 
   static _SearchBar? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_SearchBar>();

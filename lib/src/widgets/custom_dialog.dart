@@ -29,8 +29,9 @@ class CustomDialogBuilder {
                     width: 500,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0)),
+                        topLeft: Radius.circular(8.0),
+                        topRight: Radius.circular(8.0),
+                      ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 16.0),
@@ -76,8 +77,9 @@ class CustomDialogBuilder {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: footer ?? []),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: footer ?? [],
+                      ),
                     ),
                   ],
                 ),

@@ -26,7 +26,8 @@ class TagWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = GlobalSearchbar.of(context)?.themeData;
 
-    var decoration = themeData?.tagTheme.decoration ??
+    var decoration =
+        themeData?.tagTheme.decoration ??
         BoxDecoration(
           border: Border.all(
             color: themeData?.primaryColor ?? Theme.of(context).primaryColor,
@@ -34,7 +35,8 @@ class TagWidget<T> extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         );
 
-    var selectedDecoration = themeData?.tagTheme.selectedDecoration ??
+    var selectedDecoration =
+        themeData?.tagTheme.selectedDecoration ??
         BoxDecoration(
           color: themeData?.primaryColor ?? Theme.of(context).primaryColor,
           border: Border.all(),
@@ -59,31 +61,24 @@ class TagWidget<T> extends StatelessWidget {
                   child: entry.type == FilterType.stringFilter
                       ? Text('key: ${entry.searchKey}')
                       : entry.type == FilterType.dateRangeFilter
-                          ? Text(
-                              'from: ${dateTimeToString(entry.dateRange.start)}, to: ${dateTimeToString(entry.dateRange.end)}')
-                          : Text(
-                              'from: ${entry.numberRange.start}, to: ${entry.numberRange.end}'),
+                      ? Text(
+                          'from: ${dateTimeToString(entry.dateRange.start)}, to: ${dateTimeToString(entry.dateRange.end)}',
+                        )
+                      : Text(
+                          'from: ${entry.numberRange.start}, to: ${entry.numberRange.end}',
+                        ),
                 ),
               if (isSort == true)
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0 / 2),
                   child: entry.order == OrderType.asc
-                      ? const Icon(
-                          CupertinoIcons.sort_up,
-                          size: 16,
-                        )
-                      : const Icon(
-                          CupertinoIcons.sort_down,
-                          size: 16,
-                        ),
+                      ? const Icon(CupertinoIcons.sort_up, size: 16)
+                      : const Icon(CupertinoIcons.sort_down, size: 16),
                 ),
               if (dismissible == true)
                 InkWell(
                   onTap: () => onRemove?.call(),
-                  child: const Icon(
-                    Icons.close,
-                    size: 16,
-                  ),
+                  child: const Icon(Icons.close, size: 16),
                 ),
             ],
           ),

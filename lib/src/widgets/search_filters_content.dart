@@ -67,106 +67,23 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
               SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: filterList.value.asMap().entries.map(
-                    (entry) {
-                      int index = entry.key;
-                      Tag filter = entry.value;
-                      FilterAction filterEntry = filter.entry as FilterAction;
+                  children: filterList.value.asMap().entries.map((entry) {
+                    int index = entry.key;
+                    Tag filter = entry.value;
+                    FilterAction filterEntry = filter.entry as FilterAction;
 
-                      if (filterEntry.type == FilterType.dateRangeFilter) {
-                        return DateTimeRangeFilter(
-                          key: ObjectKey(filterEntry.field),
-                          dateRange: filterEntry.dateRange!,
-                          field: filterEntry.field,
-                          onChanged: (dateTimeRange) {
-                            filterEntry = FilterAction(
-                              title: filterEntry.title,
-                              field: filterEntry.field,
-                              searchKey: filterEntry.searchKey,
-                              numberRange: filterEntry.numberRange,
-                              dateRange: dateTimeRange,
-                              type: filterEntry.type,
-                            );
-
-                            final tempFilter = Tag(
-                              entry: filterEntry,
-                              isSelected: true,
-                            );
-
-                            if (filterList.value[index].isSelected) {
-                              final index = tempFilters.value.indexWhere(
-                                  (element) =>
-                                      element.field == filter.entry.field);
-
-                              if (index != -1) {
-                                tempFilters.value[index] = tempFilter.entry;
-                              }
-                            } else {
-                              tempFilters.value.add(tempFilter.entry);
-                            }
-
-                            filterList.value[index] = tempFilter;
-
-                            // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-                            filterList.notifyListeners();
-                          },
-                        );
-                      } else if (filterEntry.type ==
-                          FilterType.numberRangeFilter) {
-                        return NumberRangeFilter(
-                          key: ObjectKey(filterEntry.field),
-                          values: filterEntry.numberRange!,
-                          min: filterEntry.minNumberRange!,
-                          max: filterEntry.maxNumberRange!,
-                          onChanged: (newValues) {
-                            filterEntry = FilterAction(
-                              title: filterEntry.title,
-                              field: filterEntry.field,
-                              numberRange: newValues,
-                              maxNumberRange: filterEntry.maxNumberRange,
-                              minNumberRange: filterEntry.minNumberRange,
-                              searchKey: filterEntry.searchKey,
-                              dateRange: filterEntry.dateRange,
-                              type: filterEntry.type,
-                            );
-
-                            final tempFilter = Tag(
-                              entry: filterEntry,
-                              isSelected: true,
-                            );
-
-                            if (filterList.value[index].isSelected) {
-                              final index = tempFilters.value.indexWhere(
-                                  (element) =>
-                                      element.field == filter.entry.field);
-
-                              if (index != -1) {
-                                tempFilters.value[index] = tempFilter.entry;
-                              }
-                            } else {
-                              tempFilters.value.add(tempFilter.entry);
-                            }
-
-                            filterList.value[index] = tempFilter;
-
-                            // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-                            filterList.notifyListeners();
-                          },
-                        );
-                      }
-
-                      return StringFilter(
+                    if (filterEntry.type == FilterType.dateRangeFilter) {
+                      return DateTimeRangeFilter(
                         key: ObjectKey(filterEntry.field),
-                        hintText: filterEntry.title,
-                        searchKey: filterEntry.searchKey ?? '',
-                        onChanged: (text, operator) {
+                        dateRange: filterEntry.dateRange!,
+                        field: filterEntry.field,
+                        onChanged: (dateTimeRange) {
                           filterEntry = FilterAction(
                             title: filterEntry.title,
                             field: filterEntry.field,
-                            searchKey: text,
-                            searchKeyOperator: operator,
+                            searchKey: filterEntry.searchKey,
                             numberRange: filterEntry.numberRange,
-                            dateRange: filterEntry.dateRange,
+                            dateRange: dateTimeRange,
                             type: filterEntry.type,
                           );
 
@@ -177,8 +94,8 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
 
                           if (filterList.value[index].isSelected) {
                             final index = tempFilters.value.indexWhere(
-                                (element) =>
-                                    element.field == filter.entry.field);
+                              (element) => element.field == filter.entry.field,
+                            );
 
                             if (index != -1) {
                               tempFilters.value[index] = tempFilter.entry;
@@ -193,8 +110,89 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
                           filterList.notifyListeners();
                         },
                       );
-                    },
-                  ).toList(),
+                    } else if (filterEntry.type ==
+                        FilterType.numberRangeFilter) {
+                      return NumberRangeFilter(
+                        key: ObjectKey(filterEntry.field),
+                        values: filterEntry.numberRange!,
+                        min: filterEntry.minNumberRange!,
+                        max: filterEntry.maxNumberRange!,
+                        onChanged: (newValues) {
+                          filterEntry = FilterAction(
+                            title: filterEntry.title,
+                            field: filterEntry.field,
+                            numberRange: newValues,
+                            maxNumberRange: filterEntry.maxNumberRange,
+                            minNumberRange: filterEntry.minNumberRange,
+                            searchKey: filterEntry.searchKey,
+                            dateRange: filterEntry.dateRange,
+                            type: filterEntry.type,
+                          );
+
+                          final tempFilter = Tag(
+                            entry: filterEntry,
+                            isSelected: true,
+                          );
+
+                          if (filterList.value[index].isSelected) {
+                            final index = tempFilters.value.indexWhere(
+                              (element) => element.field == filter.entry.field,
+                            );
+
+                            if (index != -1) {
+                              tempFilters.value[index] = tempFilter.entry;
+                            }
+                          } else {
+                            tempFilters.value.add(tempFilter.entry);
+                          }
+
+                          filterList.value[index] = tempFilter;
+
+                          // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+                          filterList.notifyListeners();
+                        },
+                      );
+                    }
+
+                    return StringFilter(
+                      key: ObjectKey(filterEntry.field),
+                      hintText: filterEntry.title,
+                      searchKey: filterEntry.searchKey ?? '',
+                      onChanged: (text, operator) {
+                        filterEntry = FilterAction(
+                          title: filterEntry.title,
+                          field: filterEntry.field,
+                          searchKey: text,
+                          searchKeyOperator: operator,
+                          numberRange: filterEntry.numberRange,
+                          dateRange: filterEntry.dateRange,
+                          type: filterEntry.type,
+                        );
+
+                        final tempFilter = Tag(
+                          entry: filterEntry,
+                          isSelected: true,
+                        );
+
+                        if (filterList.value[index].isSelected) {
+                          final index = tempFilters.value.indexWhere(
+                            (element) => element.field == filter.entry.field,
+                          );
+
+                          if (index != -1) {
+                            tempFilters.value[index] = tempFilter.entry;
+                          }
+                        } else {
+                          tempFilters.value.add(tempFilter.entry);
+                        }
+
+                        filterList.value[index] = tempFilter;
+
+                        // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+                        filterList.notifyListeners();
+                      },
+                    );
+                  }).toList(),
                 ),
               ),
               const SizedBox(height: 8.0),
@@ -204,38 +202,37 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
                 constraints: const BoxConstraints(maxHeight: 124),
                 child: SingleChildScrollView(
                   child: Wrap(
-                    children: sortList.value.asMap().entries.map(
-                      (entry) {
-                        int index = entry.key;
-                        Tag sort = entry.value;
+                    children: sortList.value.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      Tag sort = entry.value;
 
-                        SortAction sortEntry = sort.entry as SortAction;
+                      SortAction sortEntry = sort.entry as SortAction;
 
-                        return TagWidget(
-                          onTap: () {
-                            final tempSort = Tag(
-                              entry: sort.entry,
-                              isSelected: !sort.isSelected,
+                      return TagWidget(
+                        onTap: () {
+                          final tempSort = Tag(
+                            entry: sort.entry,
+                            isSelected: !sort.isSelected,
+                          );
+
+                          sortList.value[index] = tempSort;
+
+                          if (tempSort.isSelected) {
+                            tempSorts.value.add(tempSort.entry);
+                          } else {
+                            tempSorts.value.removeWhere(
+                              (element) => element == tempSort.entry,
                             );
+                          }
 
-                            sortList.value[index] = tempSort;
-
-                            if (tempSort.isSelected) {
-                              tempSorts.value.add(tempSort.entry);
-                            } else {
-                              tempSorts.value.removeWhere(
-                                  (element) => element == tempSort.entry);
-                            }
-
-                            // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-                            filterList.notifyListeners();
-                          },
-                          entry: sortEntry,
-                          isSort: true,
-                          isSelected: sort.isSelected,
-                        );
-                      },
-                    ).toList(),
+                          // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+                          filterList.notifyListeners();
+                        },
+                        entry: sortEntry,
+                        isSort: true,
+                        isSelected: sort.isSelected,
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
@@ -269,21 +266,21 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
                       },
                       style: themeData?.clearFilterButton.style,
                       child: Text(
-                          themeData?.clearFilterButton.title ?? 'Clear filter'),
+                        themeData?.clearFilterButton.title ?? 'Clear filter',
+                      ),
                     ),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      widget.searchSink.add(SearchState(
-                        tempFilters.value,
-                        tempSorts.value,
-                      ));
+                      widget.searchSink.add(
+                        SearchState(tempFilters.value, tempSorts.value),
+                      );
 
                       widget.onClose();
                     },
                     style: themeData?.applyButton.style,
                     child: Text(themeData?.applyButton.title ?? 'Apply'),
-                  )
+                  ),
                 ],
               ),
             ],
@@ -301,8 +298,9 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
     SearchState searchState,
   ) {
     for (var filter in widget.filters) {
-      final selectedFilter = searchState.filters
-          .firstWhereOrNull((element) => element.field == filter.field);
+      final selectedFilter = searchState.filters.firstWhereOrNull(
+        (element) => element.field == filter.field,
+      );
 
       if (selectedFilter != null) {
         tempFilters.value.add(selectedFilter);
@@ -313,8 +311,9 @@ class _SearchFiltersContentState extends State<SearchFiltersContent> {
     }
 
     for (var sort in widget.sorts) {
-      final selectedSort = searchState.sorts
-          .firstWhereOrNull((element) => element.field == sort.field);
+      final selectedSort = searchState.sorts.firstWhereOrNull(
+        (element) => element.field == sort.field,
+      );
 
       if (selectedSort != null) {
         tempSorts.value.add(sort);

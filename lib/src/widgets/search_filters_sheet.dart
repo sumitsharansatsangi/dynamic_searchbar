@@ -17,17 +17,18 @@ class SearchFiltersSheet {
     required StreamSink<SearchState> searchSink,
   }) {
     showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return SingleChildScrollView(
-            child: SearchFiltersContent(
-              searchState: searchState,
-              filters: filters,
-              sorts: sorts,
-              searchSink: searchSink,
-              onClose: () => Navigator.pop(context),
-            ),
-          );
-        });
+      context: context,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: SearchFiltersContent(
+            searchState: searchState,
+            filters: filters,
+            sorts: sorts,
+            searchSink: searchSink,
+            onClose: () => Navigator.pop(context),
+          ),
+        );
+      },
+    );
   }
 }

@@ -2,10 +2,7 @@ import 'package:dynamic_searchbar/dynamic_searchbar.dart';
 import 'package:flutter/material.dart';
 
 final List<FilterAction> employeeFilter = [
-  FilterAction(
-    title: 'Firstname',
-    field: 'firstname',
-  ),
+  FilterAction(title: 'Firstname', field: 'firstname'),
   FilterAction(
     title: 'Age',
     field: 'age',
@@ -18,9 +15,6 @@ final List<FilterAction> employeeFilter = [
     title: 'Hired date',
     field: 'hiredDate',
     type: FilterType.dateRangeFilter,
-    dateRange: DateTimeRange(
-      start: DateTime.now(),
-      end: DateTime.now(),
-    ),
+    dateRange: DateTimeRange(start: DateTime.now(), end: DateTime.now()),
   ),
 ];

@@ -145,10 +145,7 @@ class FilterAction {
       'type': type.name,
       'searchKey': searchKey,
       'numberRange': numberRange != null
-          ? {
-              'start': numberRange?.start,
-              'end': numberRange?.end,
-            }
+          ? {'start': numberRange?.start, 'end': numberRange?.end}
           : null,
       'maxNumberRange': maxNumberRange,
       'minNumberRange': minNumberRange,
@@ -216,11 +213,8 @@ class SortAction {
   final OrderType order;
 
   Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'field': field,
-      'order': order.name,
-    }..removeWhere((key, value) => value == null);
+    return {'title': title, 'field': field, 'order': order.name}
+      ..removeWhere((key, value) => value == null);
   }
 }
 
@@ -228,8 +222,5 @@ class SearchAction {
   final FilterAction filter;
   final SortAction sort;
 
-  SearchAction({
-    required this.filter,
-    required this.sort,
-  });
+  SearchAction({required this.filter, required this.sort});
 }
